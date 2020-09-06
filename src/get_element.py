@@ -6,8 +6,10 @@ from bs4 import BeautifulSoup
 from src.utils import ( is_arg,
                         get_next_arg)
 from src.cmd import (   cmd_text,
-                        cmd_text_attribute,
-                        cmd_text_wordline)
+                        cmd_text_element,
+                        cmd_text_wordline,
+                        cmd_elem,
+                        cmd_elem_attribute)
 
 def cmd_help():
     print("How to use it:\n")
@@ -34,14 +36,19 @@ def scrap_page(content, input_stream):
         if is_arg(array_cmd, "-f"):
             response["file"] = True
             response["filename"] = get_next_arg(array_cmd, "-f")
-        if array_cmd[0] == "help" or array_cmd[0] == "h":
+        if array_cmd[0] == "help":
             response["text"] += cmd_help()
-        elif array_cmd[0] == "text" or array_cmd[0] == "t":
+        elif array_cmd[0] == "text":
             if len(array_cmd) == 1:
                 response["text"] += cmd_text(content)
             elif is_arg(array_cmd, "-w"):
                 response["text"] += cmd_text_wordline(content, get_next_arg(array_cmd, "-w"))
+            elif is_arg(array_cmd, "-e"):
+                response["text"] += cmd_text_element(content, get_next_arg(array_cmd, "-e"))
+        elif array_cmd[0] == "elem":
+            if len(array_cmd) == 2:
+                response["text"] += cmd_elem(content, array_cmd[1])
             elif is_arg(array_cmd, "-a"):
-                response["text"] += cmd_text_attribute(content, get_next_arg(array_cmd, "-a"))
+                response["text"] += cmd_elem_attribute(content, array_cmd[1], get_next_arg(array_cmd, "-a"))
     exec_response(response)
     return 0
