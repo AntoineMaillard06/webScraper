@@ -10,8 +10,10 @@ def main():
     for line in input_stream:
         page_content : models.Response = get_website_content(line)
         if page_content is not None:
+            print("Website content has been get.")
             page_content = page_content.content
-            scrap_page(page_content, input_stream)
+            if scrap_page(page_content, input_stream) == 0:
+                break
         print("Enter the website's url you want to scrap: ")
     return 0
 

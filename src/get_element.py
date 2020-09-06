@@ -31,6 +31,7 @@ def scrap_page(content, input_stream):
         "filename": ""
     }
 
+    print("Command:")
     for line in input_stream:
         array_cmd = line.split()
         if is_arg(array_cmd, "-f"):
@@ -50,5 +51,9 @@ def scrap_page(content, input_stream):
                 response["text"] += cmd_elem(content, array_cmd[1])
             elif is_arg(array_cmd, "-a"):
                 response["text"] += cmd_elem_attribute(content, array_cmd[1], get_next_arg(array_cmd, "-a"))
+        elif array_cmd[0] == "next":
+            exec_response(response)
+            return 1
+        print("Command:")
     exec_response(response)
     return 0
