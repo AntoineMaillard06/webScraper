@@ -13,6 +13,13 @@ def cmd_text_wordline(content, word):
     response += "_____\n"
     return response
 
+def cmd_text_wordlines(content, words):
+    response = ""
+
+    for word in words:
+        response += cmd_text_wordline(content, word)
+    return response
+
 def cmd_text_element(content, element):
     text = content.find_all(element)
     response = element + " element(s) texts:\n"
@@ -20,4 +27,11 @@ def cmd_text_element(content, element):
     for line in text:
         response += str(line.string) + '\n'
     response += "_____\n"
+    return response
+
+def cmd_text_elements(content, elements):
+    response = ""
+
+    for element in elements:
+        response += cmd_text_element(content, element)
     return response

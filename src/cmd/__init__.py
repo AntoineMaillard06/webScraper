@@ -1,6 +1,6 @@
 from .text import ( cmd_text,
-                    cmd_text_element,
-                    cmd_text_wordline)
+                    cmd_text_elements,
+                    cmd_text_wordlines)
 
-from .elem import ( cmd_elem,
-                    cmd_elem_attribute)
+from .elem import ( cmd_elems,
+                    cmd_elem_attributes)
