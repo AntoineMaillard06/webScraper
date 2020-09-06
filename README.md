@@ -18,7 +18,7 @@ Command:
 ```
 ___
 
-## Command to get text
+## Commands to get text
 
 ### Command to get all texts from web page
 ```
@@ -35,3 +35,19 @@ text -w youtube
 text -e a
 ```
 > This get all texts from \<a\>text\<\a\>
+
+___
+
+## Commands to get element
+
+### Command to get all elements from web page
+```
+elem a
+```
+> This get all elements \<a\>\<\a\>
+
+### Command to get all elements attribute
+```
+elem a -a href
+```
+> This get all href values from \<a\>\<\a\>
