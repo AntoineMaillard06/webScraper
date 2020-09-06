@@ -25,14 +25,14 @@ def exec_response(response):
 
 def scrap_page(content, input_stream):
     content = BeautifulSoup(content, 'html.parser')
-    response = {
-        "text": "",
-        "file": False,
-        "filename": ""
-    }
 
     print("Command:")
     for line in input_stream:
+        response = {
+            "text": "",
+            "file": False,
+            "filename": ""
+        }
         array_cmd = line.split()
         if is_arg(array_cmd, "-f"):
             response["file"] = True
@@ -55,5 +55,5 @@ def scrap_page(content, input_stream):
             exec_response(response)
             return 1
         print("Command:")
-    exec_response(response)
+        exec_response(response)
     return 0
