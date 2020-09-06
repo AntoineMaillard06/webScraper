@@ -4,12 +4,13 @@ import fileinput
 
 from bs4 import BeautifulSoup
 from src.utils import ( is_arg,
-                        get_next_arg)
+                        get_next_arg,
+                        get_next_args)
 from src.cmd import (   cmd_text,
-                        cmd_text_element,
-                        cmd_text_wordline,
-                        cmd_elem,
-                        cmd_elem_attribute)
+                        cmd_text_elements,
+                        cmd_text_wordlines,
+                        cmd_elems,
+                        cmd_elem_attributes)
 
 def cmd_help():
     print("How to use it:\n")
@@ -43,17 +44,19 @@ def scrap_page(content, input_stream):
             if len(array_cmd) == 1:
                 response["text"] += cmd_text(content)
             elif is_arg(array_cmd, "-w"):
-                response["text"] += cmd_text_wordline(content, get_next_arg(array_cmd, "-w"))
+                response["text"] += cmd_text_wordlines(content, get_next_args(array_cmd, "-w"))
             elif is_arg(array_cmd, "-e"):
-                response["text"] += cmd_text_element(content, get_next_arg(array_cmd, "-e"))
+                response["text"] += cmd_text_elements(content, get_next_args(array_cmd, "-e"))
         elif array_cmd[0] == "elem":
-            if len(array_cmd) == 2:
-                response["text"] += cmd_elem(content, array_cmd[1])
-            elif is_arg(array_cmd, "-a"):
-                response["text"] += cmd_elem_attribute(content, array_cmd[1], get_next_arg(array_cmd, "-a"))
+            if is_arg(array_cmd, "-a"):
+                array_cmd.pop(0)
+                response["text"] += cmd_elem_attributes(content, get_next_args(array_cmd), get_next_arg(array_cmd, "-a"))
+            else:
+                array_cmd.pop(0)
+                response["text"] += cmd_elems(content, array_cmd)
         elif array_cmd[0] == "next":
             exec_response(response)
             return 1
-        print("Command:")
         exec_response(response)
+        print("Command:")
     return 0
