@@ -13,5 +13,7 @@ def get_website_content(url: str):
         print("Connection Error: Probably a problem into url.\n", "\tExample: 'https://www.google.com/'")
     except requests.ConnectTimeout as err:
         print("Timed Out.")
+    except:
+        print("Please contact support.")
     print("---")
     return page
