@@ -36,12 +36,13 @@ text
 ```
 text -w youtube
 ```
+> You can use multiple words on this.
 
 ### Command to get all texts from specific element
 ```
 text -e a
 ```
-> This get all texts from \<a\>text\<\a\>
+> This get all texts from \<a\>text\<\a\>, you can use multiple elements on this.
 
 ___
 
@@ -51,13 +52,13 @@ ___
 ```
 elem a
 ```
-> This get all elements \<a\>\<\a\>
+> This get all elements \<a\>\<\a\>, you can use multiple elements on this.
 
 ### Command to get all elements attribute
 ```
 elem a -a href
 ```
-> This get all href values from \<a\>\<\a\>
+> This get all href values from \<a\>\<\a\>, you can use multiple elements on this.
 
 ___
 
