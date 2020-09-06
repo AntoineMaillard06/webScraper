@@ -51,3 +51,10 @@ elem a
 elem a -a href
 ```
 > This get all href values from \<a\>\<\a\>
+
+___
+
+## Commands to write in a file
+```
+text -f filename
+```
