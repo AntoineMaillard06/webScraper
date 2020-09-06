@@ -1,5 +1,12 @@
-# web_scraping_py
+# webScraper
 Some tests on web scraping with Python
+
+# How to exec it
+___
+```
+chmod 777 webScraper
+./webScraper
+```
 
 # How to use it
 ___
